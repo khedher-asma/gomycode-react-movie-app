@@ -69,7 +69,7 @@ class ContainerMovie extends React.Component {
 
     updateListMovie = (x) => {
         console.log(x)
-        let newmov = this.state.moviesTab2.concat(x);
+        let newmov = this.state.moviesTab.concat(x);
         console.log(newmov)
         this.setState({  moviesTab: newmov })
     }
