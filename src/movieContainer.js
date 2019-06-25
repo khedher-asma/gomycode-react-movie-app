@@ -73,8 +73,8 @@ class ContainerMovie extends React.Component {
         let newmov = this.state.moviesTab2.concat(x);
         console.log(newmov)
         
-        this.setState({  moviesTab2: newmov,
-            moviesTab: this.state.moviesTab2})
+        this.setState({  moviesTab2: newmov, moviesTab: this.state.moviesTab2 })
+
     }
     handleChange(e) {
         this.setState({ searchWord: e.target.value })

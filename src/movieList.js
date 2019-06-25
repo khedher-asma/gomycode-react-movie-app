@@ -38,8 +38,8 @@ class MovieList extends React.Component {
             let newElt = {
                 title: this.state.title,
                 image: this.state.image,
-                date: this.state.year,
-                rate: this.state.rate
+                date: parseInt(this.state.year),
+                rate: parseInt(this.state.rate)
             }
             this.props.newMovie(newElt);
             this.setState({

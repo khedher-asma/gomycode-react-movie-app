@@ -8,7 +8,7 @@ const MovieCard = ({ movie }) => {
       <a  className="navigate" href="/">
         <div className="main">
 
-          <div className="top-card-part" style={{backgroundImage : "url('"+movie.image+"')"}}>
+          <div className="top-card-part" style={{backgroundImage : "url("+movie.image+")"}}>
             <Rate style={{backgroundColor : 'red'}} className="test" nbrofrate={movie.rate}/>
 
           </div>
