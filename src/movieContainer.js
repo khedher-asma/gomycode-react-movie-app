@@ -81,188 +81,201 @@ class ContainerMovie extends React.Component {
         this.setState({ searchWord: '' })
     }
     handelStarClick(message, e) {
-        if (message === 'star1') {
-            if (this.state.Star1Isclicked === false) {
-                this.setState({ Star1Isclicked: true })
+        const response = message === 'star1' ? (
+            this.state.Star1Isclicked === false ? (
+                this.setState({ Star1Isclicked: true }),
                 this.filterRate(1)
-            } else {
-                this.setState({ Star1Isclicked: false, Star2Isclicked: false, Star3Isclicked: false, Star4Isclicked: false, Star5Isclicked: false })
-                this.filterRate(0)
-            }
-        } else if (message === 'star2') {
-            if (this.state.Star2Isclicked === false) {
-                this.setState({ Star1Isclicked: true, Star2Isclicked: true })
-                this.filterRate(2)
-            } else {
-                if (this.state.Star3Isclicked === false && this.state.Star4Isclicked === false && this.state.Star5Isclicked === false) {
-                    this.setState({ Star2Isclicked: false })
-                    this.filterRate(1)
-                } else {
-                    this.setState({ Star2Isclicked: false, Star3Isclicked: false, Star4Isclicked: false, Star5Isclicked: false })
-                    this.filterRate(1)
-                }
-            }
-        } else if (message === 'star3') {
-            if (this.state.Star3Isclicked === false) {
-                this.setState({ Star1Isclicked: true, Star2Isclicked: true, Star3Isclicked: true })
-                this.filterRate(3)
-            } else {
-                if (this.state.Star4Isclicked === false && this.state.Star5Isclicked === false) {
-                    this.setState({ Star3Isclicked: false })
-                    this.filterRate(2)
-                } else {
-                    this.setState({ Star3Isclicked: false, Star4Isclicked: false, Star5Isclicked: false })
-                    this.filterRate(2)
-                }
-            }
-        } else if (message === 'star4') {
-            if (this.state.Star4Isclicked === false) {
-                this.setState({ Star1Isclicked: true, Star2Isclicked: true, Star3Isclicked: true, Star4Isclicked: true })
-                this.filterRate(4)
-            } else {
-                if (this.state.Star5Isclicked === false) {
-                    this.setState({ Star4Isclicked: false })
-                    this.filterRate(3)
-                } else {
-                    this.setState({ Star4Isclicked: false, Star5Isclicked: false })
-                    this.filterRate(3)
-                }
+            ) : (
+                    this.setState({ Star1Isclicked: false, Star2Isclicked: false, Star3Isclicked: false, Star4Isclicked: false, Star5Isclicked: false }),
+                    this.filterRate(0)
+                )
+        ) : (
+                message === 'star2' ? (
+                    this.state.Star2Isclicked === false ? (
+                        this.setState({ Star1Isclicked: true, Star2Isclicked: true }),
+                        this.filterRate(2)
+                    ) : (
+                            (this.state.Star3Isclicked === false && this.state.Star4Isclicked === false && this.state.Star5Isclicked === false) ? (
+                                this.setState({ Star2Isclicked: false }),
+                                this.filterRate(1)
+                            ) : (
+                                    this.setState({ Star2Isclicked: false, Star3Isclicked: false, Star4Isclicked: false, Star5Isclicked: false }),
+                                    this.filterRate(1)
+                                )
+                        )
 
-            }
-        } else if (message === 'star5') {
-            if (this.state.Star5Isclicked === false) {
-                this.setState({ Star1Isclicked: true, Star2Isclicked: true, Star3Isclicked: true, Star4Isclicked: true, Star5Isclicked: true })
-                this.filterRate(5)
-            } else {
-                this.setState({ Star5Isclicked: false })
-                this.filterRate(4)
-            }
-        }
+                ) : (
+                        message === 'star3' ? (
+                            this.state.Star3Isclicked === false ? (
+                                this.setState({ Star1Isclicked: true, Star2Isclicked: true, Star3Isclicked: true }),
+                                this.filterRate(3)
+                            ) : (
+                                    (this.state.Star4Isclicked === false && this.state.Star5Isclicked === false) ? (
+                                        this.setState({ Star3Isclicked: false }),
+                                        this.filterRate(2)
+                                    ) : (
+                                            this.setState({ Star3Isclicked: false, Star4Isclicked: false, Star5Isclicked: false }),
+                                            this.filterRate(2)
+                                        )
+                                )
+                        ) : (
+                                message === 'star4' ? (
+                                    this.state.Star4Isclicked === false ? (
+                                        this.setState({ Star1Isclicked: true, Star2Isclicked: true, Star3Isclicked: true, Star4Isclicked: true }),
+                                        this.filterRate(4)
+                                    ) : (
+                                            this.state.Star5Isclicked === false ? (
+                                                this.setState({ Star4Isclicked: false }),
+                                                this.filterRate(3)
+                                            ) : (
+                                                    this.setState({ Star4Isclicked: false, Star5Isclicked: false }),
+                                                    this.filterRate(3)
+                                                )
+                                        )
+                                ) : (
+                                        message === 'star5' && (
+                                            this.state.Star5Isclicked === false ? (
+                                                this.setState({ Star1Isclicked: true, Star2Isclicked: true, Star3Isclicked: true, Star4Isclicked: true, Star5Isclicked: true }),
+                                                this.filterRate(5)
+                                            ) : (
+                                                this.setState({ Star5Isclicked: false }),
+                                                this.filterRate(4)
+                                            )
+                                        )
+                                    )
+                            )
+                    )
+            )
     }
     star = () => {
-        if (!this.state.Star1Isclicked && !this.state.Star2Isclicked && !this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) {
-            return (
-                <div>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>
+        const response = (!this.state.Star1Isclicked && !this.state.Star2Isclicked && !this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) ? (
+            <div>
+                <i className="far fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                <i className="far fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+            </div>
+        ) : (
+                (this.state.Star1Isclicked && !this.state.Star2Isclicked && !this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) ? (
+                    <div>
+                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                        <i className="far fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                        <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                        <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                        <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+                    </div>
+                ) : (
+                        (this.state.Star1Isclicked && this.state.Star2Isclicked && !this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) ? (
+                            <div>
+                                <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                                <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                                <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                                <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                                <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+                            </div>
+                        ) : (
+                                (this.state.Star1Isclicked && this.state.Star2Isclicked && this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) ? (
+                                    <div>
+                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                                        <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                                        <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+                                    </div>
+                                ) : (
+                                        (this.state.Star1Isclicked && this.state.Star2Isclicked && this.state.Star3Isclicked && this.state.Star4Isclicked && !this.state.Star5Isclicked) ? (
+                                            <div>
+                                                <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                                                <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                                                <i className="fas fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                                                <i className="fas fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                                                <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+                                            </div>
+                                        ) : (
+                                                (this.state.Star1Isclicked && this.state.Star2Isclicked && this.state.Star3Isclicked && this.state.Star4Isclicked && this.state.Star5Isclicked) ? (
+                                                    <div>
+                                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                                                        <i className="fas fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+                                                    </div>
+                                                ) : (
+                                                        <div>
+                                                            <i className="far fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
+                                                            <i className="far fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
+                                                            <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
+                                                            <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
+                                                            <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
+                                                        </div>
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
             )
-        } else if (this.state.Star1Isclicked && !this.state.Star2Isclicked && !this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) {
-            return (
-                <div>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>
-            )
-        } else if (this.state.Star1Isclicked && this.state.Star2Isclicked && !this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) {
-            return (
-                <div>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>)
-        } else if (this.state.Star1Isclicked && this.state.Star2Isclicked && this.state.Star3Isclicked && !this.state.Star4Isclicked && !this.state.Star5Isclicked) {
-            return (
-                <div>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>)
-        } else if (this.state.Star1Isclicked && this.state.Star2Isclicked && this.state.Star3Isclicked && this.state.Star4Isclicked && !this.state.Star5Isclicked) {
-            return (
-                <div>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>)
-        } else if (this.state.Star1Isclicked && this.state.Star2Isclicked && this.state.Star3Isclicked && this.state.Star4Isclicked && this.state.Star5Isclicked) {
-            return (
-                <div>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="fas fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>)
-        } else {
-            return (
-                <div>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star1', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star2', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star3', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star4', e)}></i>
-                    <i className="far fa-star" onClick={(e) => this.handelStarClick('star5', e)}></i>
-                </div>
-            )
-        }
+        return response
 
     }
     filterName = (param) => {
-        let filtred
-        if (
+        const response = (
             this.state.Star1Isclicked === false &&
             this.state.Star2Isclicked === false &&
             this.state.Star3Isclicked === false &&
             this.state.Star4Isclicked === false &&
-            this.state.Star5Isclicked === false) {
-            filtred = movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1)
-        } else if (this.state.Star1Isclicked === true &&
-            this.state.Star2Isclicked === false &&
-            this.state.Star3Isclicked === false &&
-            this.state.Star4Isclicked === false &&
-            this.state.Star5Isclicked === false) {
-            filtred = movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 1)
-        } else if (
-            this.state.Star1Isclicked === true &&
-            this.state.Star2Isclicked === true &&
-            this.state.Star3Isclicked === false &&
-            this.state.Star4Isclicked === false &&
-            this.state.Star5Isclicked === false
-        ) {
-            filtred = movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 2)
-
-        } else if (
-            this.state.Star1Isclicked === true &&
-            this.state.Star2Isclicked === true &&
-            this.state.Star3Isclicked === true &&
-            this.state.Star4Isclicked === false &&
-            this.state.Star5Isclicked === false
-        ) {
-            filtred = movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 3)
-
-        } else if (
-            this.state.Star1Isclicked === true &&
-            this.state.Star2Isclicked === true &&
-            this.state.Star3Isclicked === true &&
-            this.state.Star4Isclicked === true &&
-            this.state.Star5Isclicked === false
-        ) {
-            filtred = movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 4)
-
-        } else if (
-            this.state.Star1Isclicked === true &&
-            this.state.Star2Isclicked === true &&
-            this.state.Star3Isclicked === true &&
-            this.state.Star4Isclicked === true &&
-            this.state.Star5Isclicked === true
-        ) {
-            filtred = movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 5)
-
-        }
-
-        this.setState({ moviesTab: filtred })
+            this.state.Star5Isclicked === false) ? (
+                movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1)
+            ) : (
+                (
+                    this.state.Star1Isclicked === true &&
+                    this.state.Star2Isclicked === false &&
+                    this.state.Star3Isclicked === false &&
+                    this.state.Star4Isclicked === false &&
+                    this.state.Star5Isclicked === false
+                ) ? (
+                        movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 1)
+                    ) : (
+                        (
+                            this.state.Star1Isclicked === true &&
+                            this.state.Star2Isclicked === true &&
+                            this.state.Star3Isclicked === false &&
+                            this.state.Star4Isclicked === false &&
+                            this.state.Star5Isclicked === false
+                        ) ? (
+                                movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 2)
+                            ) : (
+                                (
+                                    this.state.Star1Isclicked === true &&
+                                    this.state.Star2Isclicked === true &&
+                                    this.state.Star3Isclicked === true &&
+                                    this.state.Star4Isclicked === false &&
+                                    this.state.Star5Isclicked === false
+                                ) ? (
+                                        movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 3)
+                                    ) : (
+                                        (
+                                            this.state.Star1Isclicked === true &&
+                                            this.state.Star2Isclicked === true &&
+                                            this.state.Star3Isclicked === true &&
+                                            this.state.Star4Isclicked === true &&
+                                            this.state.Star5Isclicked === false
+                                        ) ? (
+                                                movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 4)
+                                            ) : (
+                                                (
+                                                    this.state.Star1Isclicked === true &&
+                                                    this.state.Star2Isclicked === true &&
+                                                    this.state.Star3Isclicked === true &&
+                                                    this.state.Star4Isclicked === true &&
+                                                    this.state.Star5Isclicked === true
+                                                ) && movies.filter((el, i) => el.title.toLowerCase().indexOf(param) > -1 && el.rate >= 5)
+                                            )
+                                    )
+                            )
+                    )
+            )
+        this.setState({ moviesTab: response })
     }
     filterRate = (param) => {
         let filtred = movies.filter((el, i) => el.rate >= param)

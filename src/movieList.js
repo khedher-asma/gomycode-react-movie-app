@@ -14,34 +14,29 @@ class MovieList extends React.Component {
     }
     handleMovieTitleChange = (e) => {
         let reg = /^[a-zA-Z0-9 ]*$/
-        if (reg.test(e.target.value)) {
-            this.setState({ title: e.target.value })
-        }
+        reg.test(e.target.value) && this.setState({ title: e.target.value })
     }
     handleMovieImageChange = (e) => {
         this.setState({ image: e.target.value })
     }
     handleMovieYearChange = (e) => {
         let reg = /^[0-9]*$/
-        if (reg.test(e.target.value)) {
-            this.setState({ year: e.target.value })
-        }
+        reg.test(e.target.value) && this.setState({ year: e.target.value })
     }
     handleMovieRateChange = (e) => {
         let reg = /^[0-5]*$/
-        if (reg.test(e.target.value)) {
-            this.setState({ rate: e.target.value })
-        }
+        reg.test(e.target.value) && this.setState({ rate: e.target.value })
     }
     handleClick = () => {
-        if (this.state.title !== '' && this.state.image !== '' && this.state.year !== '' && this.state.rate !== '') {
-            let newElt = {
+        let newElt
+        const asma = (this.state.title !== '' && this.state.image !== '' && this.state.year !== '' && this.state.rate !== '') ? (
+            newElt = {
                 title: this.state.title,
                 image: this.state.image,
                 date: parseInt(this.state.year),
                 rate: parseInt(this.state.rate)
-            }
-            this.props.newMovie(newElt);
+            },
+            this.props.newMovie(newElt),
             this.setState({
                 title: '',
                 image: '',
@@ -49,10 +44,9 @@ class MovieList extends React.Component {
                 rate: ''
 
             })
-        } else {
-            return
-        }
-
+        ) : (
+            false
+        )
     }
     render() {
         return (
